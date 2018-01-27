@@ -1,0 +1,15 @@
+<launch>
+
+	<arg name="verbose" default="true"/>
+	<arg name="paused" default="false"/>
+
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="verbose" value="$(arg verbose)"/>
+		<arg name="paused" value="$(arg paused)"/>
+	</include>
+
+	<param name="robot_description" command="$(find xacro)/xacro $(find rover_arm_description)/urdf/arm_model.xacro" />
+
+	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model rover_arm_description -param robot_description" />
+
+</launch>

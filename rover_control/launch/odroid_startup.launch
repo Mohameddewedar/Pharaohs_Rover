@@ -1,0 +1,15 @@
+<launch>
+
+<arg name="arduino_dev" default="/dev/ttyACM0"/>
+
+<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+
+<node name="Flags" pkg="rover_control" type="flags_srv"/>
+
+<node name="Act" pkg="rover_control" type="act_srv"/>
+
+<node name="State" pkg="rover_control" type="state_srv"/>
+
+<node name="Arduino_Interface" pkg="rosserial_python" type="serial_node.py" args="$(arg arduino_dev)"/>
+
+</launch>
