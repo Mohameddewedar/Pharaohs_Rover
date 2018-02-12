@@ -10,44 +10,48 @@ class arm():
         self.s4 = 376.0
         self.s5 = 301.0
         self.s6 = 61.2
-        self.s7 = 60.8
+        self.s7 = 61.0
         self.s8 = 89.0
         self.s9 = 58.0
-        self.s10 = 215.6
+        self.s10 = 216.0
         self.s11 = 71.0
         self.s12 = 95.0
         self.s13 = 70.0
-        self.s14 = 77.4
+        self.s14 = 77.5
         self.L1 = 90.0
         self.z1 = 35.0
         self.d1 =436.0
         self.d2 =334.0
         self.d3 =243.0
         self.beta=0.0
-        self.x = 820.0  # Units in Millimeters
+        self.x = 805.0  # Units in Millimeters
         self.y = 0.0# Units in Millimeters
-        self.z = 400.0  # Units in Millimeters
-        self.n = 0.0 #Units in Degrees
+        self.z = 399.0  # Units in Millimeters
+        self.n = -30.0 #Units in Degrees
         
     def update_inverse(self):
         z3=self.z
-        self.n=(math.pi/180.0)*self.n
+        n=math.radians(self.n)
         L3=math.sqrt(self.x*self.x+self.y*self.y)
         self.beta=math.atan2(self.y,self.x)
-        L2=L3-self.s3*math.cos(self.n)
-        z2=z3-self.s3*math.sin(self.n)
+        L2=L3-self.s3*math.cos(n)
+        z2=z3-self.s3*math.sin(n)
         dL=L2-self.L1
         dz=z2-self.z1
         F=math.sqrt(dL*dL+dz*dz)
         q1=math.atan2(dz,dL)
-        q2=math.acos((self.s1*self.s1+F*F-self.s2*self.s2)/(2.0*self.s1*F))
-        m=math.acos((self.s1*self.s1+self.s2*self.s2-F*F)/(2.0*self.s1*self.s2))
-        alpha=math.pi-abs(m)
-        theta=q1+q2
-
-        dr=math.atan2(25.0,210.0)
+        if F >=800:
+            theta=q1
+            alpha=0
+            m=math.pi
+        else:
+            q2=math.acos((self.s1*self.s1+F*F-self.s2*self.s2)/(2.0*self.s1*F))
+            m=math.acos((self.s1*self.s1+self.s2*self.s2-F*F)/(2.0*self.s1*self.s2))
+            alpha=math.pi-abs(m)
+            theta=q1+q2
+        dr=math.atan(25.0/210.0)
         r=math.pi-dr-theta
-        dL4=math.sqrt(25*25+210*210.0)
+        dL4=math.sqrt(25*25.0+210.0*210)
         self.d1=math.sqrt(dL4*dL4+self.s4*self.s4-2.0*dL4*self.s4*math.cos(r)) #linear 1 length
 
         dm=math.sqrt(self.s6*self.s6+self.s7*self.s7-2.0*self.s6*self.s7*math.cos(m))
@@ -56,21 +60,22 @@ class arm():
         c=math.pi-a-b
         self.d2=math.sqrt(self.s5*self.s5+self.s8*self.s8-2.0*self.s5*self.s8*math.cos(c)) #linear 2 length
 
-        phi=theta-alpha-self.n
-        t=math.pi-phi-56.0/180*math.pi
+        phi=theta-alpha-n
+        t=math.pi-phi-56.0/180.0*math.pi
         dt=math.sqrt(self.s11*self.s11+self.s14*self.s14-2.0*self.s11*self.s14*math.cos(t))
         e=math.acos((dt*dt+self.s11*self.s11-self.s14*self.s14)/(2.0*dt*self.s11))
         f=math.acos((dt*dt+self.s12*self.s12-self.s13*self.s13)/(2.0*dt*self.s12))
         g=math.pi-e-f
         self.d3=math.sqrt(self.s10*self.s10+self.s12*self.s12-2.0*self.s10*self.s12*math.cos(g))  #linear 3 length
-
+ 
+ 
     def valid_linears(self):
         pass
 
 
     def calculate_forward(self):
-        dL4=math.sqrt(25*25+210.0*210)
-        dr=math.atan2(25,210.0)
+        dL4=math.sqrt(25*25.0+210.0*210)
+        dr=math.atan2(25.0,210.0)
         r=math.acos((dL4*dL4+self.s4*self.s4-self.d1*self.d1)/(2.0*dL4*self.s4))
         theta=r+dr-math.pi/2
         c=math.acos((self.s5*self.s5+self.s8*self.s8-self.d2*self.d2)/(2.0*self.s5*self.s8))
@@ -88,14 +93,13 @@ class arm():
         f=math.acos((dg1*dg1+self.s14*self.s14-self.s13*self.s13)/(2.0*dg1*self.s14))
         t=e+f
         phi=math.pi-56.5/180*math.pi-t
-        self.n=theta+alpha-phi
-
+        n=theta+alpha-phi
 
         L2=self.L1+self.s1*math.sin(theta)
         L3=L2+self.s2*math.sin(theta+alpha+90)
         z2=self.z1+self.s1*math.cos(theta)
-        self.x=(L3+self.s3*math.cos(self.n))*math.cos(self.beta)
-        self.y=(L3+self.s3*math.cos(self.n))*math.sin(self.beta)
+        self.x=(L3+self.s3*math.cos(n))*math.cos(self.beta)
+        self.y=(L3+self.s3*math.cos(n))*math.sin(self.beta)
         self.z=z2+self.s2*math.cos(theta+alpha+90)
 
     

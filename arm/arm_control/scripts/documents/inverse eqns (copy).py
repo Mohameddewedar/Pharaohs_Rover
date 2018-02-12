@@ -1,9 +1,9 @@
 import math
 
-x=820
+x=805
 y=0
-z=400
-n=-21
+z=399
+n=-26
 
 s1=500
 s2=350
@@ -32,29 +32,29 @@ dL=L2-L1
 dz=z2-z1
 F=math.sqrt(dL*dL+dz*dz)
 q1=math.atan2(dz,dL)
-q2=math.acos((s1*s1+F*F-s2*s2)/(2*s1*F))
-m=math.acos((s1*s1+s2*s2-F*F)/(2*s1*s2))
+q2=math.acos((s1*s1+F*F-s2*s2)/(2.0*s1*F))
+m=math.acos((s1*s1+s2*s2-F*F)/(2.0*s1*s2))
 alpha=math.pi-abs(m)
 theta=q1+q2
 
-dr=math.atan(25/210)
+dr=math.atan(25.0/210)
 r=math.pi-dr-theta
-dL4=math.sqrt(25*25+210*210)
-d1=math.sqrt(dL4*dL4+s4*s4-2*dL4*s4*math.cos(r)) #linear 1 length
+dL4=math.sqrt(25*25.0+210.0*210)
+d1=math.sqrt(dL4*dL4+s4*s4-2.0*dL4*s4*math.cos(r)) #linear 1 length
 
-dm=math.sqrt(s6*s6+s7*s7-2*s6*s7*math.cos(m))
-a=math.acos((s6*s6+dm*dm-s7*s7)/(2*s6*dm))
-b=math.acos((dm*dm+s8*s8-s9*s9)/(2*s8*dm))
+dm=math.sqrt(s6*s6+s7*s7-2.0*s6*s7*math.cos(m))
+a=math.acos((s6*s6+dm*dm-s7*s7)/(2.0*s6*dm))
+b=math.acos((dm*dm+s8*s8-s9*s9)/(2.0*s8*dm))
 c=math.pi-a-b
-d2=math.sqrt(s5*s5+s8*s8-2*s5*s8*math.cos(c)) #linear 2 length
+d2=math.sqrt(s5*s5+s8*s8-2.0*s5*s8*math.cos(c)) #linear 2 length
 
 
 phi=theta-alpha-n
-t=math.pi-phi-56/180*math.pi
-dt=math.sqrt(s11*s11+s14*s14-2*s11*s14*math.cos(t))
-e=math.acos((dt*dt+s11*s11-s14*s14)/(2*dt*s11))
-f=math.acos((dt*dt+s12*s12-s13*s13)/(2*dt*s12))
+t=math.pi-phi-56/180.0*math.pi
+dt=math.sqrt(s11*s11+s14*s14-2.0*s11*s14*math.cos(t))
+e=math.acos((dt*dt+s11*s11-s14*s14)/(2.0*dt*s11))
+f=math.acos((dt*dt+s12*s12-s13*s13)/(2.0*dt*s12))
 g=math.pi-e-f
-d3=math.sqrt(s10*s10+s12*s12-2*s10*s12*math.cos(g))  #linear 3 length
+d3=math.sqrt(s10*s10+s12*s12-2.0*s10*s12*math.cos(g))  #linear 3 length
 
 print("d1=%.2f d2=%.2f d3=%.2f" %(d1,d2,d3))
