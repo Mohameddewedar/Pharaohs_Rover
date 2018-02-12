@@ -12,7 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   sensor_msgs
   std_msgs
-  edited_joy
+  joy
 )
 
 catkin_python_setup()
