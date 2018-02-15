@@ -1,9 +1,9 @@
 import math
 
 
-d1=436.0
+d1=451.0
 d2=334.0
-d3=243.0
+d3=260.0
 beta=0.0
 
 beta=math.radians(beta)

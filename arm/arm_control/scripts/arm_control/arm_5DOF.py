@@ -24,10 +24,10 @@ class arm():
         self.d2 =334.0
         self.d3 =243.0
         self.beta=0.0
-        self.x = 805.0  # Units in Millimeters
+        self.x = 868.53  # Units in Millimeters
         self.y = 0.0# Units in Millimeters
-        self.z = 399.0  # Units in Millimeters
-        self.n = -30.0 #Units in Degrees
+        self.z = 416.59  # Units in Millimeters
+        self.n = -16.8 #Units in Degrees
         
     def update_inverse(self):
         z3=self.z

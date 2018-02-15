@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+import time
 import rospy
 from std_msgs.msg import String
 from sensor_msgs.msg import JointState
@@ -7,16 +7,14 @@ from sensor_msgs.msg import Joy
 # from arm_control.arm_5DOF import arm
 from arm_5DOF import arm
 
-
 myArm = arm()
-
 
 def read_joy(cmd_joy):
     if cmd_joy.buttons[0]:  # moving the point in space
-        myArm.x += -10 * cmd_joy.axes[0]
-        myArm.y += -10 * cmd_joy.axes[1]
+        myArm.x += -1 * cmd_joy.axes[0]
+        myArm.y += -1 * cmd_joy.axes[1]
 
-    myArm.z += -5 * cmd_joy.axes[5]
+    myArm.z += 1 * cmd_joy.axes[5]
     # n += cmd_joy.axes[2]/10
     # myArm.n = cmd_joy.axes[3]
 
@@ -26,19 +24,20 @@ def read_joy(cmd_joy):
         myArm.update_inverse()
 
     if cmd_joy.buttons[1]:  # intialization
-        myArm.d1 = 436
+        myArm.d1 = 451
         myArm.d2 = 334
-        myArm.d3 = 243
+        myArm.d3 = 270
         myArm.beta = 0
         myArm.calculate_forward()
     
+    time.sleep(0.01)
 
 
 def talker():
     rospy.init_node('joy_to_I2C', anonymous=False)
     rospy.Subscriber('/joy', Joy, read_joy,queue_size=5)
     pub = rospy.Publisher('actuator_lengths', String, queue_size=5)
-    rate = rospy.Rate(2)  # 10hz
+    rate = rospy.Rate(50)  # 10hz
     while not rospy.is_shutdown():
 
         rospy.loginfo([myArm.x, myArm.y, myArm.z, myArm.n])
