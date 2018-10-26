@@ -1,0 +1,537 @@
+<robot
+  name="pharous">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0342546676912177 0.3354450751551 -0.083772450023281"
+        rpy="0 0 0" />
+      <mass
+        value="1.113273878008" />
+      <inertia
+        ixx="0.0919449282525187"
+        ixy="-1.28190017999446E-08"
+        ixz="-0.0008524825006297"
+        iyy="0.125641050214363"
+        iyz="7.41908627415724E-08"
+        izz="0.0387236498936021" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/base_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.956862745098039 0.956862745098039 0.956862745098039 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/base_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="bogie_right">
+    <inertial>
+      <origin
+        xyz="-0.0669560839961428 -0.103859140261983 -0.0721259138374255"
+        rpy="0 0 0" />
+      <mass
+        value="1.29013017012984" />
+      <inertia
+        ixx="0.012247863499338"
+        ixy="-0.00460535126807572"
+        ixz="-0.000248269495872662"
+        iyy="0.0646345241708514"
+        iyz="-0.00038510427841949"
+        izz="0.0765409420982121" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/bogie_right.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0.490196078431373 0.658823529411765 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/bogie_right.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_bogie_right"
+    type="continuous">
+    <origin
+      xyz="0.25325 0.329999999999998 0.335441268817448"
+      rpy="1.5707963267949 -0.12363211096913 -1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="bogie_right" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="L1">
+    <inertial>
+      <origin
+        xyz="4.65395300408566E-07 3.74102978206725E-07 0.142893685242714"
+        rpy="0 0 0" />
+      <mass
+        value="9.83394958959218" />
+      <inertia
+        ixx="0.0682932721667935"
+        ixy="-1.04357400332322E-07"
+        ixz="-7.52644885612228E-08"
+        iyy="0.0682932576559284"
+        iyz="-2.07222985212337E-07"
+        izz="0.0885665405643924" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/L1.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/L1.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JL1"
+    type="continuous">
+    <origin
+      xyz="-0.426102782676879 -0.228841186139171 -0.0475000000000031"
+      rpy="3.14159265358979 0 0.554422805500324" />
+    <parent
+      link="bogie_right" />
+    <child
+      link="L1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="L2">
+    <inertial>
+      <origin
+        xyz="4.65395317159056E-07 3.74102974765034E-07 0.142893685242717"
+        rpy="0 0 0" />
+      <mass
+        value="9.83394958959217" />
+      <inertia
+        ixx="0.0682932721667934"
+        ixy="-1.04357400325383E-07"
+        ixz="-7.52644885575195E-08"
+        iyy="0.0682932576559283"
+        iyz="-2.07222985208249E-07"
+        izz="0.0885665405643923" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/L2.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/L2.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JL2"
+    type="continuous">
+    <origin
+      xyz="0.202139588137216 -0.239980392463256 -0.0474999999999998"
+      rpy="3.14159265358979 0 0.554422805500329" />
+    <parent
+      link="bogie_right" />
+    <child
+      link="L2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="bogie_left">
+    <inertial>
+      <origin
+        xyz="-0.0721259138453373 -0.10403146863883 -0.0666881392430735"
+        rpy="0 0 0" />
+      <mass
+        value="1.29013017003635" />
+      <inertia
+        ixx="0.0765409439329024"
+        ixy="-0.000385742991449256"
+        ixz="-0.000247275969546821"
+        iyy="0.064610433326066"
+        iyz="-0.00474032739452632"
+        izz="0.0122719561789334" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/bogie_left.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.415686274509804 0.419607843137255 0.443137254901961 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/bogie_left.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_bogie_left"
+    type="continuous">
+    <origin
+      xyz="-0.17925 0.330000000000001 0.335441268817444"
+      rpy="1.47091476208721 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="bogie_left" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="L4">
+    <inertial>
+      <origin
+        xyz="-0.142893685242717 5.04753342955855E-07 -3.19013944261037E-07"
+        rpy="0 0 0" />
+      <mass
+        value="9.83394958959217" />
+      <inertia
+        ixx="0.0885665405643923"
+        ixy="9.82389854611306E-08"
+        ixz="-1.97370743941687E-07"
+        iyy="0.0682932485055299"
+        iyz="1.03314844138169E-07"
+        izz="0.0682932813171918" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/L4.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.901960784313726 0.92156862745098 0.92156862745098 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/L4.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JL4"
+    type="continuous">
+    <origin
+      xyz="-0.0474999999999969 -0.229938882892577 -0.425511472966853"
+      rpy="-0.551349563537748 0 0" />
+    <parent
+      link="bogie_left" />
+    <child
+      link="L4" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="L5">
+    <inertial>
+      <origin
+        xyz="4.65395320017881E-07 3.74102971961721E-07 0.142893685242717"
+        rpy="0 0 0" />
+      <mass
+        value="9.83394958959217" />
+      <inertia
+        ixx="0.0682932721667935"
+        ixy="-1.04357400328853E-07"
+        ixz="-7.52644885488455E-08"
+        iyy="0.0682932576559283"
+        iyz="-2.07222985200116E-07"
+        izz="0.0885665405643924" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/L5.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/L5.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JL5"
+    type="continuous">
+    <origin
+      xyz="-0.0474999999999992 -0.239458703768008 0.202757524863305"
+      rpy="1.5707963267949 1.40250069895209 -1.5707963267949" />
+    <parent
+      link="bogie_left" />
+    <child
+      link="L5" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="rocker">
+    <inertial>
+      <origin
+        xyz="-0.0764663320101683 -0.0681597549812487 -0.0885867186495815"
+        rpy="0 0 0" />
+      <mass
+        value="1.16052851923532" />
+      <inertia
+        ixx="0.0284119803572561"
+        ixy="-3.87840124759418E-05"
+        ixz="0.0190720314027776"
+        iyy="0.0618777051647883"
+        iyz="-4.53122876130645E-05"
+        izz="0.0340446715431136" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/rocker.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/rocker.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_rocker"
+    type="continuous">
+    <origin
+      xyz="0.0378798906937743 -0.345346641597827 0.335441268817443"
+      rpy="-5.8866100191415E-06 -0.720207706851822 -1.19782853777336E-15" />
+    <parent
+      link="base_link" />
+    <child
+      link="rocker" />
+    <axis
+      xyz="0 -0.999999999942843 0" />
+  </joint>
+  <link
+    name="L3">
+    <inertial>
+      <origin
+        xyz="4.65396442939081E-07 3.74102528399867E-07 0.14526873547498"
+        rpy="0 0 0" />
+      <mass
+        value="9.83394958974638" />
+      <inertia
+        ixx="0.0682932721679839"
+        ixy="-1.04357458008408E-07"
+        ixz="-7.52639820312122E-08"
+        iyy="0.0682932576570302"
+        iyz="-2.07223127128788E-07"
+        izz="0.0885665405644126" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/L3.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/L3.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JL3"
+    type="continuous">
+    <origin
+      xyz="0.0424633946890276 -0.0689975900377624 -0.368483124565098"
+      rpy="-2.46414677175767 -0.581695045538897 -0.97157395381248" />
+    <parent
+      link="rocker" />
+    <child
+      link="L3" />
+    <axis
+      xyz="0 0 0.999999999920349" />
+  </joint>
+  <link
+    name="L6">
+    <inertial>
+      <origin
+        xyz="-0.143781949637535 1.75165204541194E-06 -1.55986339539504E-08"
+        rpy="0 0 0" />
+      <mass
+        value="9.83394958946774" />
+      <inertia
+        ixx="0.0885665405636291"
+        ixy="-7.75739712121556E-08"
+        ixz="-2.40151286603818E-07"
+        iyy="0.0682932485041918"
+        iyz="1.03316712740664E-07"
+        izz="0.0682932813170207" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/L6.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.901960784313726 0.92156862745098 0.92156862745098 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pharous/meshes/L6.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JL6"
+    type="continuous">
+    <origin
+      xyz="-0.371856270198045 -0.0689948104164395 -0.0108463900906541"
+      rpy="-0.238689468369677 0.715250272984291 5.11369373227962E-06" />
+    <parent
+      link="rocker" />
+    <child
+      link="L6" />
+    <axis
+      xyz="0.99999999996017 0 0" />
+  </joint>
+  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+    <updateRate>100.0</updateRate>
+    <robotNamespace>/</robotNamespace>
+    <leftFrontJoint>JL4</leftFrontJoint>
+    <rightFrontJoint>JL1</rightFrontJoint>
+    <leftRearJoint>JL6</leftRearJoint>
+    <rightRearJoint>JL3</rightRearJoint>
+    <rightMiddleJoint>JL2</rightMiddleJoint>
+    <leftMiddleJoint>JL5</leftMiddleJoint>
+    <wheelSeparation>0.7</wheelSeparation>
+    <wheelDiameter>0.3</wheelDiameter>
+    <robotBaseFrame>base_link</robotBaseFrame>
+    <torque>100</torque>
+    <topicName>cmd_vel</topicName>
+    <broadcastTF>true</broadcastTF>
+  </plugin>
+</gazebo>
+</robot>

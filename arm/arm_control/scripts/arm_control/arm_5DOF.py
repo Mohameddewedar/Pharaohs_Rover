@@ -28,8 +28,11 @@ class arm():
         self.y = 0.0# Units in Millimeters
         self.z = 416.59  # Units in Millimeters
         self.n = -16.8 #Units in Degrees
+        self.gripper=0
+        self.twist=0
+        self.new_link=90
         
-    def update_inverse(self):
+    def update_inverse(self):   
         z3=self.z
         n=math.radians(self.n)
         L3=math.sqrt(self.x*self.x+self.y*self.y)
@@ -40,7 +43,7 @@ class arm():
         dz=z2-self.z1
         F=math.sqrt(dL*dL+dz*dz)
         q1=math.atan2(dz,dL)
-        if F >=800:
+        if F >=780:
             theta=q1
             alpha=0
             m=math.pi
@@ -52,12 +55,16 @@ class arm():
         dr=math.atan(25.0/210.0)
         r=math.pi-dr-theta
         dL4=math.sqrt(25*25.0+210.0*210)
+
+        # if(self.d1 >= 420 and self.d1 <= 580):
         self.d1=math.sqrt(dL4*dL4+self.s4*self.s4-2.0*dL4*self.s4*math.cos(r)) #linear 1 length
 
         dm=math.sqrt(self.s6*self.s6+self.s7*self.s7-2.0*self.s6*self.s7*math.cos(m))
         a=math.acos((self.s6*self.s6+dm*dm-self.s7*self.s7)/(2.0*self.s6*dm))
         b=math.acos((dm*dm+self.s8*self.s8-self.s9*self.s9)/(2.0*self.s8*dm))
         c=math.pi-a-b
+
+        # if self.d2 > 330 and self.d2 < 400:
         self.d2=math.sqrt(self.s5*self.s5+self.s8*self.s8-2.0*self.s5*self.s8*math.cos(c)) #linear 2 length
 
         phi=theta-alpha-n
@@ -66,12 +73,18 @@ class arm():
         e=math.acos((dt*dt+self.s11*self.s11-self.s14*self.s14)/(2.0*dt*self.s11))
         f=math.acos((dt*dt+self.s12*self.s12-self.s13*self.s13)/(2.0*dt*self.s12))
         g=math.pi-e-f
+        # if(self.d3 > 260 and self.d3 < 300):
         self.d3=math.sqrt(self.s10*self.s10+self.s12*self.s12-2.0*self.s10*self.s12*math.cos(g))  #linear 3 length
- 
  
     def valid_linears(self):
         pass
 
+    def initialize(self):
+        self.d1 = 451
+        self.d2 = 334
+        self.d3 = 270
+        self.beta = 0
+        self.new_link = 90
 
     def calculate_forward(self):
         dL4=math.sqrt(25*25.0+210.0*210)
